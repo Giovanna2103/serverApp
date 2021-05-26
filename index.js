@@ -30,6 +30,7 @@ cx.connect((error, dados) => {
   console.log(`Dados do servidor -> ${cx.threadId}`);
 });
 
+
 // -------------------- Rota para o usuário --------------------------
 
 
@@ -56,9 +57,6 @@ app.get("/usuario/listar", cors(configCors), (req, res) =>{
 });
 
 
-
-
-
 // ----------------------- Rota para logar com o usuario ---------------------
 
 app.post("/usuario/login", cors(configCors), (req, res) => {
@@ -77,6 +75,7 @@ app.post("/usuario/login", cors(configCors), (req, res) => {
     res.status(200).send({output:result})
   });
 });
+
 
 // -------------- Rota para Despesas ------------
 
@@ -127,14 +126,6 @@ app.get("/receita/saldo", cors(configCors), (req, res) =>{
 
   })
 });
-
-
-
-
-
-
-
-
 
 
 
