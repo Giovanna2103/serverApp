@@ -57,6 +57,8 @@ app.get("/usuario/listar", cors(configCors), (req, res) =>{
 
 
 
+
+
 // ----------------------- Rota para logar com o usuario ---------------------
 
 app.post("/usuario/login", cors(configCors), (req, res) => {
