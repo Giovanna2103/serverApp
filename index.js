@@ -59,6 +59,7 @@ app.get("/usuario/listar", cors(configCors), (req, res) =>{
 
 // ----------------------- Rota para logar com o usuario ---------------------
 
+
 app.post("/usuario/login", cors(configCors), (req, res) => {
   const us = req.body.nomeusuario;
   const em = req.body.email;
@@ -78,6 +79,7 @@ app.post("/usuario/login", cors(configCors), (req, res) => {
 
 
 // -------------- Rota para Despesas ------------
+
 
 app.post("/despesas", cors(configCors), (req, res) =>{
   cx.query("insert into tbdespesas set ?",[req.body],(erro,result) => {
@@ -104,6 +106,7 @@ app.get("/despesas/listar", cors(configCors), (req, res) =>{
 
 
 // -------------- Rota para Receita ------------
+
 
 app.post("/receita", cors(configCors), (req, res) =>{
   cx.query("insert into tbreceita set ?",[req.body],(erro,result) => {
