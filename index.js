@@ -120,7 +120,7 @@ app.post("/receita", cors(configCors), (req, res) =>{
 });
 
 app.get("/receita/saldo", cors(configCors), (req, res) =>{
-  cx.query("select totalRendimento from tbreceita",(erro,result) => {
+  cx.query("select * from tbreceita",(erro,result) => {
     if (erro) {
       res.status(400).send({ output: `Não encontrado -> ${erro}` });
       return;
