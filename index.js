@@ -18,7 +18,7 @@ const cx = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "21032001",
-  database: "appfinanca",
+  database: "bancofinanca",
   port: "3306",
 });
 
@@ -68,7 +68,7 @@ app.post("/usuario/login", cors(configCors), (req, res) => {
   cx.query(`select u.* from tbusuario u
   where (u.nomeusuario=? or u.email=?) and u.senha=?;`,
   [us,em, sh],
-  (error,result)=> {
+  (error,result )=> {
     if(error){
       res.status(400).send({output:`Erro ao tentar efetuar login -> ${error}`});
       return;
@@ -82,14 +82,40 @@ app.post("/usuario/login", cors(configCors), (req, res) => {
 
 
 app.post("/despesas", cors(configCors), (req, res) =>{
-  cx.query("insert into tbdespesas set ?",[req.body],(erro,result) => {
+  const nc = req.body.nomedaConta;
+  const vc = req.body.valorConta;
+  const cl = req.body.classificacao;
+
+  const ic = req.body.idCliente;
+  const sf = req.body.SaldoFinal;
+  const is = req.body.idSalario;
+  let idDespesa = ""
+   
+  cx.query("insert into tbdespesas set nomedaConta=?, valorConta=?, classificacao=?",
+    [nc,vc,cl],
+    (erro,result) => {
     if (erro) {
       res.status(400).send({ output: `Não cadastrou -> ${erro}` });
       return;
     }
-    res.status(201).send({ output: result });
+
+    idDespesa=result.insertId;
+    
+    cx.query("insert into tbcarteira set idDespesas=?, idCliente=?, SaldoFinal=?, idSalario=?",
+    [idDespesa,ic,sf,is],
+    (erro,result2) => {
+      if (erro) {
+        res.status(400).send({ output: `Não cadastrou -> ${erro}` });
+        return;
+      }
+  
+      res.status(201).send({output: "Lançado"});
+    })
+  
+  
 
   })
+
 });
 
 
@@ -109,18 +135,35 @@ app.get("/despesas/listar", cors(configCors), (req, res) =>{
 
 
 app.post("/receita", cors(configCors), (req, res) =>{
-  cx.query("insert into tbreceita set ?",[req.body],(erro,result) => {
+  const tr = req.body.tipodeRenda;
+  const rd = req.body.renda;
+
+  // const ic = req.body.idCliente;
+  // const sf = req.body.SaldoFinal;
+  // const is = req.body.idSalario;
+   
+  cx.query("insert into tbreceita set tipodeRenda=?, renda=?",
+  [tr,rd],
+  (erro,result) => {
     if (erro) {
       res.status(400).send({ output: `Não cadastrou -> ${erro}` });
       return;
     }
-    res.status(201).send({ output: result });
+    res.status(201).send({ output: "lançado" });
 
   })
 });
 
+
+
+
+
+
+
+
+
 app.get("/receita/saldo", cors(configCors), (req, res) =>{
-  cx.query("select * from tbreceita",(erro,result) => {
+  cx.query("select * from tbcarteira where idCliente=1 order by idCarteira desc limit 0,1",(erro,result) => {
     if (erro) {
       res.status(400).send({ output: `Não encontrado -> ${erro}` });
       return;

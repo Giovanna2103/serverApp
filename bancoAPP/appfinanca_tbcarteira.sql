@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
 --
--- Host: localhost    Database: appfinança
+-- Host: localhost    Database: appfinanca
 -- ------------------------------------------------------
--- Server version	5.7.26
+-- Server version	5.7.31
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,31 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tbusuario`
+-- Table structure for table `tbcarteira`
 --
 
-DROP TABLE IF EXISTS `tbusuario`;
+DROP TABLE IF EXISTS `tbcarteira`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbusuario` (
-  `idCliente` int(11) NOT NULL AUTO_INCREMENT,
-  `nomeUsuario` varchar(50) NOT NULL,
-  `senha` varchar(200) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `datanascimento` varchar(45) NOT NULL,
-  `sexo` char(2) NOT NULL,
-  PRIMARY KEY (`idCliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `tbcarteira` (
+  `idCarteira` int(11) NOT NULL AUTO_INCREMENT,
+  `SaldoFinal` decimal(10,2) DEFAULT NULL,
+  `idCliente` int(11) DEFAULT NULL,
+  `idSalario` int(11) DEFAULT NULL,
+  `idDespesas` int(11) DEFAULT NULL,
+  `dataHora` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idCarteira`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbusuario`
+-- Dumping data for table `tbcarteira`
 --
 
-LOCK TABLES `tbusuario` WRITE;
-/*!40000 ALTER TABLE `tbusuario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbusuario` ENABLE KEYS */;
+LOCK TABLES `tbcarteira` WRITE;
+/*!40000 ALTER TABLE `tbcarteira` DISABLE KEYS */;
+INSERT INTO `tbcarteira` VALUES (3,1800.85,1,2,0,'2021-06-05 14:16:09'),(4,1650.40,1,2,1,'2021-06-05 14:16:09'),(5,1604.41,1,2,2,'2021-06-05 14:16:09');
+/*!40000 ALTER TABLE `tbcarteira` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-19 11:49:30
+-- Dump completed on 2021-06-05 11:40:27
