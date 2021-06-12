@@ -138,10 +138,6 @@ app.post("/receita", cors(configCors), (req, res) =>{
   const tr = req.body.tipodeRenda;
   const rd = req.body.renda;
 
-  // const ic = req.body.idCliente;
-  // const sf = req.body.SaldoFinal;
-  // const is = req.body.idSalario;
-   
   cx.query("insert into tbreceita set tipodeRenda=?, renda=?",
   [tr,rd],
   (erro,result) => {
@@ -156,6 +152,16 @@ app.post("/receita", cors(configCors), (req, res) =>{
 
 
 
+app.get("/receita/listar", cors(configCors), (req, res) =>{
+  cx.query("select * from tbreceita",(erro,result) => {
+    if (erro) {
+      res.status(400).send({ output: `Não encontrado -> ${erro}` });
+      return;
+    }
+    res.status(201).send({ output: result });
+
+  })
+});
 
 
 
