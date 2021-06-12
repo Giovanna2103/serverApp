@@ -111,11 +111,7 @@ app.post("/despesas", cors(configCors), (req, res) =>{
   
       res.status(201).send({output: "Lançado"});
     })
-  
-  
-
   })
-
 });
 
 
@@ -138,6 +134,12 @@ app.post("/receita", cors(configCors), (req, res) =>{
   const tr = req.body.tipodeRenda;
   const rd = req.body.renda;
 
+  const ic = req.body.idCliente;
+  const sf = req.body.SaldoFinal;
+  const id = req.body.idDespesa;
+
+  let idSalario = ""
+
   cx.query("insert into tbreceita set tipodeRenda=?, renda=?",
   [tr,rd],
   (erro,result) => {
@@ -145,10 +147,34 @@ app.post("/receita", cors(configCors), (req, res) =>{
       res.status(400).send({ output: `Não cadastrou -> ${erro}` });
       return;
     }
-    res.status(201).send({ output: "lançado" });
+
+    idSalario=result.insertId;
+
+
+    cx.query("insert into tbcarteira set idSalario=?, idCliente=?, SaldoFinal=?,  idDespesas=?",
+    [idSalario,ic,sf,id],
+    (erro,result2) => {
+      if (erro) {
+        res.status(400).send({ output: `Não cadastrou -> ${erro}` });
+        return;
+      }
+  
+      res.status(201).send({output: "Lançado"});
+    })
 
   })
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -162,10 +188,6 @@ app.get("/receita/listar", cors(configCors), (req, res) =>{
 
   })
 });
-
-
-
-
 
 
 app.get("/receita/saldo", cors(configCors), (req, res) =>{
