@@ -16,29 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tbdespesas`
+-- Table structure for table `tbreceita`
 --
 
-DROP TABLE IF EXISTS `tbdespesas`;
+DROP TABLE IF EXISTS `tbreceita`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbdespesas` (
-  `idDespesas` int unsigned NOT NULL AUTO_INCREMENT,
-  `nomedaConta` varchar(60) NOT NULL,
-  `valorConta` decimal(10,2) NOT NULL,
-  `classificacao` varchar(100) NOT NULL,
-  PRIMARY KEY (`idDespesas`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `tbreceita` (
+  `idSalario` int NOT NULL AUTO_INCREMENT,
+  `tipodeRenda` varchar(100) NOT NULL,
+  `renda` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`idSalario`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbdespesas`
+-- Dumping data for table `tbreceita`
 --
 
-LOCK TABLES `tbdespesas` WRITE;
-/*!40000 ALTER TABLE `tbdespesas` DISABLE KEYS */;
-INSERT INTO `tbdespesas` VALUES (1,'Luz',150.45,'despesa mensal'),(2,'Netflix',45.99,'despesa extra'),(3,'Agua',56.99,'Despesa Mensal'),(15,'Passeio',150.00,'Despesa Extra'),(14,'Almoço',63.45,'Despesa Extra'),(11,'Gas',56.99,'Despesa Mensal');
-/*!40000 ALTER TABLE `tbdespesas` ENABLE KEYS */;
+LOCK TABLES `tbreceita` WRITE;
+/*!40000 ALTER TABLE `tbreceita` DISABLE KEYS */;
+INSERT INTO `tbreceita` VALUES (2,'Renda Fixa',1800.85),(3,'Renda Fixa',150.00);
+/*!40000 ALTER TABLE `tbreceita` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-09 21:16:28
+-- Dump completed on 2021-06-15 21:09:51

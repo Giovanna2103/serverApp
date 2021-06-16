@@ -166,18 +166,6 @@ app.post("/receita", cors(configCors), (req, res) =>{
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 app.get("/receita/listar", cors(configCors), (req, res) =>{
   cx.query("select * from tbreceita",(erro,result) => {
     if (erro) {
@@ -200,7 +188,6 @@ app.get("/receita/saldo", cors(configCors), (req, res) =>{
 
   })
 });
-
 
 
 app.listen(5521, () => console.log("Servidor ondeline na porta 5521"));

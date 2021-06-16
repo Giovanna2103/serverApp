@@ -16,32 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tbusuario`
+-- Table structure for table `tbdespesas`
 --
 
-DROP TABLE IF EXISTS `tbusuario`;
+DROP TABLE IF EXISTS `tbdespesas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbusuario` (
-  `idCliente` int NOT NULL AUTO_INCREMENT,
-  `nomeUsuario` varchar(50) NOT NULL,
-  `senha` varchar(200) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `datanascimento` varchar(45) NOT NULL,
-  `sexo` char(2) NOT NULL,
-  PRIMARY KEY (`idCliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `tbdespesas` (
+  `idDespesas` int unsigned NOT NULL AUTO_INCREMENT,
+  `nomedaConta` varchar(60) NOT NULL,
+  `valorConta` decimal(10,2) NOT NULL,
+  `classificacao` varchar(100) NOT NULL,
+  PRIMARY KEY (`idDespesas`)
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbusuario`
+-- Dumping data for table `tbdespesas`
 --
 
-LOCK TABLES `tbusuario` WRITE;
-/*!40000 ALTER TABLE `tbusuario` DISABLE KEYS */;
-INSERT INTO `tbusuario` VALUES (1,'Gigi','123','Gi@gmail.com','Giovanna Araujo','21/03/2001','F');
-/*!40000 ALTER TABLE `tbusuario` ENABLE KEYS */;
+LOCK TABLES `tbdespesas` WRITE;
+/*!40000 ALTER TABLE `tbdespesas` DISABLE KEYS */;
+INSERT INTO `tbdespesas` VALUES (1,'Luz',150.45,'Despesa Mensal'),(16,'intenet',56.99,'Despesa Mensal'),(34,'Tudo',63.08,'Despesa Mensal'),(33,'Gi',100.00,'Despesa Extra'),(32,'Viagem',100.00,'Despesa Extra'),(31,'Gaz',55.00,'Despesa Mensal');
+/*!40000 ALTER TABLE `tbdespesas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-09 21:16:28
+-- Dump completed on 2021-06-15 21:09:51
